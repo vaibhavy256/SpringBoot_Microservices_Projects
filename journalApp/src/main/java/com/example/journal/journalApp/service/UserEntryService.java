@@ -22,7 +22,13 @@ public class UserEntryService {
 
     public User saveNewUser(User user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(Arrays.asList("Normal"));
+        user.setRoles(Arrays.asList("USER"));
+        User userEntry= userEntryRepository.save(user);
+        return userEntry;
+    }
+    public User saveAdmin(User user){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(Arrays.asList("USER","ADMIN"));
         User userEntry= userEntryRepository.save(user);
         return userEntry;
     }
